@@ -40,3 +40,6 @@ architecture, architecture flux, flux, facebook
 
 
 # Setup
+- gulp
+- browserify
+- reactify
