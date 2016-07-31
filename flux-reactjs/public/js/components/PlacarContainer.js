@@ -25,20 +25,30 @@ export default class PlacarContainer extends React.Component{
     });
   }
   render(){
+    const { partida, casa, visitante } = this.props;
+    console.log(visitante);
     return (
       <div>
         <div style={{float: "left", "marginRight": "50px"}}>
           <h3>Casa</h3>
-          <Time nome={this.props.casa.nome} marcarGol={this.margarGolCasa.bind(this)} gols={this.state.gols_casa} />
+          <Time nome={casa.nome} marcarGol={this.margarGolCasa.bind(this)} gols={this.state.gols_casa} />
         </div>
         <div style={{float: "left", "marginRight": "50px"}}>
-          <Partida />
+          <Partida {...partida} />
         </div>
         <div style={{float: "left", "marginRight": "50px"}}>
         <h3>Visitante</h3>
-          <Time nome={this.props.visitante.nome} marcarGol={this.margarGolVisitante.bind(this)} gols={this.state.gols_visitante} />
+          <Time nome={visitante.nome} marcarGol={this.margarGolVisitante.bind(this)} gols={this.state.gols_visitante} />
         </div>
       </div>
         );
   }
 }
+
+PlacarContainer.propTypes = {
+  gols: React.PropTypes.number.isRequired,
+};
+
+PlacarContainer.defaultProps = {
+  gols: 0
+};

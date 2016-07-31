@@ -39,7 +39,16 @@
 - **PROPRIEDADES** || Funciona como atributos html
   - <Component attr={val} />
   - Para _ACESSAR_ usa-se o **this.props**
+- **propTypes** || Usar _depois_ da declaração da classe
+  - Define que é _obrigatório_
+```
+  Component.propTypes = { obj: React.PropTypes.type.isRequired};
+```  
 
+- **VALORES PADROES** || Define os _valores_ padroes para _propriedades_ não informadas
+```
+  Component.defaultProps = {obj};
+```
 
 ## Observations
 - Use _transpile babel_
@@ -54,3 +63,7 @@
 - Para usar variaveis no JSX tem que ter o **{}**
 - Separar o CSS INLINE COM virgula **,**
 - CSS INLINE nome das propriedades **não** devem receber **-**, _marginRight_
+- **Proptype** || Serve para saber como usar o componente, define do que ele precisa para funcionar
+  - Não gera erros para o usuário
+  - Não para a aplicação/componente
+  - Mostra erro no console
