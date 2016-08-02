@@ -37,9 +37,77 @@ architecture, architecture flux, flux, facebook
     - The **View** _propagates_ an _action_ through a _central_ **Dispatcher**
       - Various **stores** that hold the applications's _data_ and _business logic_, which _updates_ _all_ of the **Views** that are _affected_
 - **Controller** _don't exists_ in architecture flux
-
+- **Components** _trigger_ **actions** and _listening_ **stores**
+- _Flux Memory Leaks_ quando component for criado de novo da um _removeListener_
 
 # Setup
 - gulp
 - browserify
 - reactify
+
+## Plugins
+- Flux
+
+# Code
+## Stores
+- _Emit_ events for **components** _listen_
+  - **this.emit(event)**
+```
+import { EventEmitter } from 'events';
+
+class ClassName extends EventEmitter{
+  constructor(){
+    super();
+
+  }
+  function(text){
+    this.emit(event);
+  }
+}
+const ClassName = new ClassName();
+export default ClassName;
+
+```
+
+## Components
+- Listen events
+  - **Store.on(event, function)**
+- Import the **actions**
+```
+import React from "react";
+import * as Actions from "path/Actions";
+import Store from "path/Store";
+
+export default class NameComponent extends React.Component {
+  constructor() {
+    super();
+  }
+
+  method() {
+    Store.on(event, method);
+  }
+  render() {}
+}
+```
+
+## Dispatcher
+- Central RECEIVED the _method_ and the _data_
+  - **dispatcher.register(store.function)** || With this the dispacher _listen_ the method in store
+  - **dispacher.dispatch({type, data})** || Run the method that did registered
+```
+import { Dispatcher } from "flux";
+export default new Dispatcher;
+```
+
+## Actions
+- Have all functions
+- **Components** import the **actions**
+```
+import dispatcher form 'path/dispatcher';
+export function method(text){
+  dispatcher.dispatch({
+    type,
+    text,
+  });
+}
+```
